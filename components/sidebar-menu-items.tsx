@@ -4,8 +4,12 @@ import { SideNavItem } from '@/types/types'
 import Link from 'next/link'
 import { BsChevronRight } from 'react-icons/bs'
 import { usePathname } from 'next/navigation'
+import { useSidebarToggle } from '@/hooks/use-sidebar-toggle'
 
 function sidebarMenuItem({item}:{item:SideNavItem}) {
+
+
+    const {toggleCollapse} = useSidebarToggle();
     const linkStyle = "flex items-center min-h-[40px] h-full text-[#6e768e] py-2 px-4 hover:text-white rounded-md transition duration-200"
     const activeLinkStyle= "rounded-md text-white light:text-black light:bg-[#efefef] bg-[#3a3f48]"
     const ddLinkStyle = linkStyle;
@@ -24,10 +28,13 @@ function sidebarMenuItem({item}:{item:SideNavItem}) {
         item.submenu ? (<div className='rounded-md mid-w-[18px]'>
             <a className={`${ddLinkStyle} ${pathName.includes(item.path)? activeLinkStyle: ''}`} onClick={toggleSubMenu}>
                 {item.icon}
+
+                {!toggleCollapse&& <>
                 <span className='ml-3 leading-6 font-semibold'>{item.title}</span>
-                <BsChevronRight className='ml-auto stroke-2 text-xs'></BsChevronRight>
+                <BsChevronRight className={`${subMenuOpen? 'rotate-90':''}ml-auto stroke-2 text-xs`}></BsChevronRight>
+                </>}
             </a>
-            {subMenuOpen && <div className='bg-gray-400 border-l-4'>
+            {subMenuOpen &&!toggleCollapse&& <div className='bg-gray-400 border-l-4'>
                 <div className='grid gap-y-2 px-10 py-3 leading-5'>
                     {
                         item.subMenuItems.map((subitem, index) => {
@@ -48,7 +55,7 @@ function sidebarMenuItem({item}:{item:SideNavItem}) {
 
         </div>):(<Link href={item.path} className={`${linkStyle} ${item.path===pathName?activeLinkStyle:''}`}>
             {item.icon}
-            <span className='ml-3 leading-6 font-semibold'>{item.title}</span>
+            {!toggleCollapse && <span className='ml-3 leading-6 font-semibold'>{item.title}</span>}
             
             </Link>)
 }

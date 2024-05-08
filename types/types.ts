@@ -5,3 +5,7 @@ export type SideNavItem = {
     submenu?:boolean,
     subMenuItems?:SideNavItem[]
 }
+export type SideNavItemGroup = {
+    title:string,
+    menuList:SideNavItem[]
+}
