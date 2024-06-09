@@ -36,7 +36,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 
-const data: Payment[] = [
+const data: Verification[] = [
     {
         id: "m5gr84i9",
         amount: 316,
@@ -69,14 +69,14 @@ const data: Payment[] = [
     },
 ]
 
-export type Payment = {
+export type Verification = {
     id: string
     amount: number
     status: "pending" | "processing" | "success" | "failed"
     email: string
 }
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Verification>[] = [
     {
         id: "select",
         header: ({ table }) => (
@@ -140,7 +140,7 @@ export const columns: ColumnDef<Payment>[] = [
         id: "actions",
         enableHiding: false,
         cell: ({ row }) => {
-            const payment = row.original
+            const Verification = row.original
 
             return (
                 <DropdownMenu>
@@ -153,13 +153,13 @@ export const columns: ColumnDef<Payment>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(payment.id)}
+                            onClick={() => navigator.clipboard.writeText(Verification.id)}
                         >
-                            Copy payment ID
+                            Copy Verification ID
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
+                        <DropdownMenuItem>View Verification details</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )
@@ -167,7 +167,7 @@ export const columns: ColumnDef<Payment>[] = [
     },
 ]
 
-export function RecentSales() {
+export function DataTable() {
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []

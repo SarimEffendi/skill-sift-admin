@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
 import { Overview } from '@/app/components/overview';
-import { RecentSales } from '@/app/components/recent-sales';
+import { RecentSales } from '@/app/components/datatablee';
 
 const Dashboard = () => {
     return (

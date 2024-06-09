@@ -23,7 +23,7 @@ export const SIDEBAR_ITEMS: SideNavItemGroup[] = [
                 submenu:true,
                 subMenuItems:[
                     {title:"Companies", path:"/users/companies"},
-                    {title:"Recruiters", path:"/users/Recruiters"},
+                    {title:"Recruiters", path:"/users/recruiters"},
                     {title:"Jobseekers", path:"/users/jobseekers"},
                 ],
         
